@@ -23,7 +23,7 @@ public class ControllerPokeList {
         db.connect("./data/pokemons.sqlite");
 
         // Llistar les 10 últimes ciutats utilitzant ArrayList i HashMap
-        ArrayList<HashMap<String, Object>> llistaPokemons = db.query("SELECT * FROM pokemons;");
+        ArrayList<HashMap<String, Object>> llistaPokemons = db.query("SELECT * FROM pokemons ORDER BY number;");
         try {
             setList(llistaPokemons);
         } catch (Exception e) {

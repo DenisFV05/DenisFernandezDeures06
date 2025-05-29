@@ -218,6 +218,10 @@ public class ControllerPokeForm implements Initializable {
         String sql = String.format("UPDATE pokemons SET name = '%s', type = '%s', ability = '%s', height = '%s', weight = '%s', category = '%s', image = '%s' WHERE number = '%d'", name, type, ability, height, weight, category, image, this.number);
         db.update(sql);
 
+        ControllerPokeList listCtrl = (ControllerPokeList) UtilsViews.getController("ViewList");
+        listCtrl.loadList();
+
+
         labelSaved.setVisible(true);
         setTimeout(2500, () -> {
             labelSaved.setVisible(false);

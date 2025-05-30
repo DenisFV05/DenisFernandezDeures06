@@ -74,6 +74,7 @@ public class ControllerList implements Initializable {
             JSONArray jsonArray = new JSONArray(content);
 
             list.getChildren().clear();
+
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject item = jsonArray.getJSONObject(i);
                 String name = item.optString("name", "Sin nombre");
@@ -108,36 +109,37 @@ public class ControllerList implements Initializable {
                 // Evento click para seleccionar y abrir detalle
                 hbox.setOnMouseClicked(ev -> {
                     try {
-                        // Resetear estilos de todos
+                        // Resetear estilos de todos los ítems
                         list.getChildren().forEach(node ->
                             node.setStyle("-fx-padding: 8; -fx-border-color: lightgray; -fx-border-width: 0 0 1 0;"));
 
                         // Marcar seleccionado
                         hbox.setStyle("-fx-padding: 8; -fx-border-color: blue; -fx-border-width: 0 0 1 0; -fx-background-color: #d0e7ff;");
 
-                        // Determinar ruta del FXML de detalle
-                        String fxmlPath = switch (currentType) {
-                            case "characters" -> "/assets/character_detail.fxml";
-                            case "games"      -> "/assets/game_detail.fxml";
-                            case "consoles"   -> "/assets/console_detail.fxml";
-                            default           -> null;
-                        };
-                        if (fxmlPath == null) return;
-
-                        // Cargar el FXML
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-                        Parent root = loader.load();
-
-                        // Pasar datos al controlador de detalle
+                        // Obtener controlador de la vista detalle según tipo
                         switch (currentType) {
-                            case "characters" -> ((ControllerCharacterDetail) loader.getController()).loadData(item);
-                            case "games"      -> ((ControllerGameDetail) loader.getController()).loadData(item);
-                            case "consoles"   -> ((ControllerConsoleDetail) loader.getController()).loadData(item);
+                            case "characters" -> {
+                                ControllerCharacterDetail ctrl = (ControllerCharacterDetail) UtilsViews.getController("ViewCharacterDetail");
+                                if (ctrl != null) {
+                                    ctrl.loadData(item);
+                                    UtilsViews.setView("ViewCharacterDetail");
+                                }
+                            }
+                            case "games" -> {
+                                ControllerGameDetail ctrl = (ControllerGameDetail) UtilsViews.getController("ViewGameDetail");
+                                if (ctrl != null) {
+                                    ctrl.loadData(item);
+                                    UtilsViews.setView("ViewGameDetail");
+                                }
+                            }
+                            case "consoles" -> {
+                                ControllerConsoleDetail ctrl = (ControllerConsoleDetail) UtilsViews.getController("ViewConsoleDetail");
+                                if (ctrl != null) {
+                                    ctrl.loadData(item);
+                                    UtilsViews.setView("ViewConsoleDetail");
+                                }
+                            }
                         }
-
-                        // Reemplazar la raíz de la escena
-                        list.getScene().setRoot(root);
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

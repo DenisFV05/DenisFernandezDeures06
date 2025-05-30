@@ -29,7 +29,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class ControllerPokeForm implements Initializable {
-
+    // hay dos tipos de estado para la vista de formulario, add o edit, dependiendo de cual hara una cosa u otra
     public static final String STATUS_ADD = "add";
     public static final String STATUS_EDIT = "edit";
     private String status = "";
@@ -89,7 +89,7 @@ public class ControllerPokeForm implements Initializable {
         }
     }
 
-    public void setStatus(String value, int number) {
+    public void setStatus(String value, int number) { // depende del estado, ejecuta un codigo u otro
         this.status = value;
         this.number = number;
 
@@ -97,7 +97,7 @@ public class ControllerPokeForm implements Initializable {
         choiceType.getItems().addAll(Arrays.asList(pokemonTypes));
 
         labelSaved.setVisible(false);
-
+        // si es añadir, solo sale add como boton, se limpian todos los campos
         if (this.status.equalsIgnoreCase(STATUS_ADD)) {
             buttonDelete.setVisible(false);
             buttonAdd.setVisible(true);
@@ -112,7 +112,7 @@ public class ControllerPokeForm implements Initializable {
             imgPokemon.setImage(null);
             this.imagePath = "";
         }
-        if (this.status.equalsIgnoreCase(STATUS_EDIT)) {
+        if (this.status.equalsIgnoreCase(STATUS_EDIT)) { // si es editar, se oculta add, se muestra delete y update, se hace query y se cargan los datos en los textfield
             buttonDelete.setVisible(true);
             buttonAdd.setVisible(false);
             buttonUpdate.setVisible(true);
@@ -158,7 +158,7 @@ public class ControllerPokeForm implements Initializable {
     }
 
     @FXML
-    public void selectFile(ActionEvent event) {
+    public void selectFile(ActionEvent event) { // este codigo abre un Stage nuevo (ventana) unicamente para buscar en el explorador de archivos la imagen que queramos
         Stage stage = (Stage) buttonSelectFile.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -183,7 +183,7 @@ public class ControllerPokeForm implements Initializable {
     }
 
     @FXML
-    public void add(ActionEvent event) {
+    public void add(ActionEvent event) { // al pulsar el boton add, hace .get de todo, lo inserta en la base de datos y la actualiza
         String name = fieldName.getText();
         String type = (String) choiceType.getSelectionModel().getSelectedItem();
         String ability = fieldAbility.getText();
@@ -205,7 +205,7 @@ public class ControllerPokeForm implements Initializable {
     }
 
     @FXML
-    public void update(ActionEvent event) {
+    public void update(ActionEvent event) { // al pulsar el boton update, hace una query similar a la anterior pero con update
         String name = fieldName.getText();
         String type = (String) choiceType.getSelectionModel().getSelectedItem();
         String ability = fieldAbility.getText();
@@ -241,7 +241,7 @@ public class ControllerPokeForm implements Initializable {
     }
     
     @FXML
-    public void delete(ActionEvent event) {
+    public void delete(ActionEvent event) { // al pulsar delete, hace una query de delete
         AppData db = AppData.getInstance();
         String sql = String.format("DELETE FROM pokemons WHERE number = '%d'", this.number);
         db.update(sql);

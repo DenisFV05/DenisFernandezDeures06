@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class ControllerList implements Initializable {
 
     @FXML
-    private ImageView imgArrowBack;
+    private ImageView imgArrowBack; // flecha para retroceder
 
     @FXML
     private VBox list;
@@ -34,12 +34,12 @@ public class ControllerList implements Initializable {
     @FXML
     private Label lblTitle;
 
-    private String currentType;
+    private String currentType; // tipo de lista, hay 3 opciones distintas
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            URL imageURL = getClass().getResource("/assets/images0601/arrow-back.png");
+            URL imageURL = getClass().getResource("/assets/images0601/arrow-back.png"); // cargar la imagen de la flecha
             Image image = new Image(imageURL.toExternalForm());
             imgArrowBack.setImage(image);
         } catch (Exception e) {
@@ -48,13 +48,13 @@ public class ControllerList implements Initializable {
         }
     }
 
-    public void loadList(String type) {
-        currentType = type;
+    public void loadList(String type) { // cargar los datos del json
+        currentType = type; 
         lblTitle.setText(type.substring(0, 1).toUpperCase() + type.substring(1));
 
         try {
-            String jsonPath = switch (type) {
-                case "characters" -> "/assets/data/characters.json";
+            String jsonPath = switch (type) { // elegir entre las 3 opciones
+                case "characters" -> "/assets/data/characters.json"; 
                 case "games" -> "/assets/data/games.json";
                 case "consoles" -> "/assets/data/consoles.json";
                 default -> null;
@@ -71,22 +71,22 @@ public class ControllerList implements Initializable {
             }
             Path path = Paths.get(jsonFileURL.toURI());
             String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
-            JSONArray jsonArray = new JSONArray(content);
+            JSONArray jsonArray = new JSONArray(content); // json array del contenido
 
-            list.getChildren().clear();
+            list.getChildren().clear(); // lista de nodos hijos
 
-            for (int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) { // bucle recorre cada pj, game o consola 
                 JSONObject item = jsonArray.getJSONObject(i);
                 String name = item.optString("name", "Sin nombre");
                 String imageName = item.optString("image", null);
-
+                // solo coje foto y nombre en este caso
                 HBox hbox = new HBox(10);
                 hbox.setAlignment(Pos.CENTER_LEFT);
                 hbox.setStyle("-fx-padding: 8; -fx-border-color: lightgray; -fx-border-width: 0 0 1 0;");
 
                 if (imageName != null) {
                     try {
-                        URL imageURL = getClass().getResource("/assets/images0601/" + imageName);
+                        URL imageURL = getClass().getResource("/assets/images0601/" + imageName); // foto
                         if (imageURL != null) {
                             ImageView imageView = new ImageView(new Image(imageURL.toExternalForm()));
                             imageView.setFitWidth(40);

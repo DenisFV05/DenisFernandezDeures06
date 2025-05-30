@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent;
 
 public class ControllerMain {
 
+    // Depende de que seleccionemos, utilizará la vista viewList y cargara los datos de un json u otro
+
     @FXML
     private void toViewCharacters(MouseEvent event) {
         ControllerList ctrlList = (ControllerList) UtilsViews.getController("ViewCharacters");

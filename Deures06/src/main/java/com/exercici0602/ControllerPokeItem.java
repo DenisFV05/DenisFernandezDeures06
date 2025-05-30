@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class ControllerPokeItem {
+public class ControllerPokeItem { // Este archivo es para cada elemento de la lista
 
     private int number;
 

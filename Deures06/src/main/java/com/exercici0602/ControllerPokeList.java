@@ -22,7 +22,7 @@ public class ControllerPokeList {
         AppData db = AppData.getInstance();
         db.connect("./data/pokemons.sqlite");
 
-        // Llistar les 10 últimes ciutats utilitzant ArrayList i HashMap
+        // select por number y ponerlo en la lista
         ArrayList<HashMap<String, Object>> llistaPokemons = db.query("SELECT * FROM pokemons ORDER BY number;");
         try {
             setList(llistaPokemons);
@@ -35,32 +35,32 @@ public class ControllerPokeList {
 
         URL resource = this.getClass().getResource("/assets/viewPokeItem.fxml");
 
-        // Netejar el contingut existent
+        // limpiar lo que hay existente
         list.getChildren().clear();
 
-        // Iterar sobre els elements del JSONArray 'jsonInfo' (ja carregat a initialize)
+        // Iterar elementos de Jsonarray
         for (int i = 0; i < llistaPokemons.size(); i++) {
-            // Obtenir l'objecte JSON individual (animal)
+            // Obtenir l'objecte JSON individual del pokemon
             HashMap<String, Object> pokemon = llistaPokemons.get(i);
 
-            // Extreure la informació necessària del JSON
+            // info de cada pokemon
             int number = (int) pokemon.get("number");
             String name = (String) pokemon.get("name");
             String type = (String) pokemon.get("type");
             String imagePath = (String) pokemon.get("image");
 
-            // Carregar el template
+            // cargar la template del fxml
             FXMLLoader loader = new FXMLLoader(resource);
             Parent itemTemplate = loader.load();
             ControllerPokeItem itemController = loader.getController();
 
-            // Assignar els valors als controls del template
+            // Assignar los valores
             itemController.setNumber(number);
             itemController.setTitle(name);
             itemController.setSubtitle(type);
             itemController.setImatge(imagePath);
 
-            // Afegir el nou element a 'yPane'
+            // Añadirlo a la template
             list.getChildren().add(itemTemplate);
         }
     }

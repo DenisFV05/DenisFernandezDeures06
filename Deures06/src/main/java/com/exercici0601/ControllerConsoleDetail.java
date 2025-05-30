@@ -22,7 +22,7 @@ public class ControllerConsoleDetail implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        URL backUrl = getClass().getResource("/assets/images0601/arrow-back.png");
+        URL backUrl = getClass().getResource("/assets/images0601/arrow-back.png"); // flecha para retroceder
         if (backUrl != null) imgBack.setImage(new Image(backUrl.toExternalForm()));
     }
 

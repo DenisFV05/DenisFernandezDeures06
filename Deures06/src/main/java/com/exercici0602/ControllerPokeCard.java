@@ -66,11 +66,11 @@ public class ControllerPokeCard implements Initializable {
         }
     }
 
-    public void loadPokemon(int number) {
+    public void loadPokemon(int number) { // carga el pokemon con el numero de parametro
         this.number = number;
 
         AppData db = AppData.getInstance();
-
+        // pone todos los datos en los labels y imagen
         ArrayList<HashMap<String, Object>> llistaPokemons = db.query(String.format("SELECT * FROM pokemons WHERE number = '%d';", this.number));
         if (llistaPokemons.size() == 1) {
             HashMap<String, Object> pokemon = llistaPokemons.get(0); 
@@ -90,7 +90,7 @@ public class ControllerPokeCard implements Initializable {
                 e.printStackTrace();
             }
         }
-
+        // Si no hay un pokemon antes que el, el boton de anterior se desactiva
         llistaPokemons = db.query(String.format("SELECT * FROM pokemons WHERE number < '%d' ORDER BY number DESC LIMIT 1;", this.number));
         if (llistaPokemons.size() == 1) {
             HashMap<String, Object> pokemon = llistaPokemons.get(0); 
@@ -100,7 +100,7 @@ public class ControllerPokeCard implements Initializable {
             this.previousNumber = -1;
             this.buttonPrevious.setDisable(true);
         }
-
+        // lo mismo pero con el boton de next
         llistaPokemons = db.query(String.format("SELECT * FROM pokemons WHERE number > '%d' ORDER BY number ASC LIMIT 1;", this.number));
         if (llistaPokemons.size() == 1) {
             HashMap<String, Object> pokemonNext = llistaPokemons.get(0); 

@@ -22,11 +22,11 @@ public class ControllerGameDetail implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        URL backUrl = getClass().getResource("/assets/images0601/arrow-back.png");
+        URL backUrl = getClass().getResource("/assets/images0601/arrow-back.png"); // flecha para retroceder
         if (backUrl != null) imgBack.setImage(new Image(backUrl.toExternalForm()));
     }
 
-    public void loadData(org.json.JSONObject json) {
+    public void loadData(org.json.JSONObject json) { // carga todos los datos
         lblName.setText(json.optString("name", ""));
         lblYear.setText(String.valueOf(json.optInt("year", 0)));
         lblType.setText(json.optString("type", ""));

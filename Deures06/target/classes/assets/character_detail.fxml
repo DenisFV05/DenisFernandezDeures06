@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.exercici0601.ControllerCharacterDetail"
+            prefWidth="300" prefHeight="400">
+
+  <!-- Header -->
+  <HBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+        spacing="10" style="-fx-background-color: #EEE;" alignment="CENTER_LEFT" prefHeight="40">
+    <padding>
+      <Insets left="10"/>
+    </padding>
+    <children>
+      <ImageView fx:id="imgBack" fitWidth="24" fitHeight="24"
+                 onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+        <cursor><Cursor fx:constant="HAND"/></cursor>
+      </ImageView>
+      <Label fx:id="lblName">
+        <font><Font size="20"/></font>
+      </Label>
+    </children>
+  </HBox>
+
+  <!-- Content -->
+  <ScrollPane AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="0"
+              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fitToWidth="true">
+    <content>
+      <VBox spacing="10">
+        <padding>
+          <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <ImageView fx:id="imgCharacter" fitWidth="200" fitHeight="200" preserveRatio="true"/>
+        <Label text="Color:"/>
+        <Label fx:id="lblColor" wrapText="true"/>
+        <Label text="Game Origin:"/>
+        <Label fx:id="lblGame" wrapText="true"/>
+      </VBox>
+    </content>
+  </ScrollPane>
+</AnchorPane>

@@ -9,83 +9,68 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exercici0601.ControllerMain">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exercici0601.ControllerMain">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" style="-fx-background-color: rgb(150,190,250);" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER" maxHeight="58.0" minHeight="50.0" prefHeight="58.0" prefWidth="308.0" style="-fx-background-color: rgb(30, 144, 255);">
                <children>
-                  <Label maxHeight="50.0" text="Nintendo DB" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
+                  <Label maxHeight="50.0" text="Nintendo DB" textFill="#140075">
+                     <font><Font name="Sitka Subheading" size="32.0" /></font>
                   </Label>
                </children>
             </HBox>
+
             <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="list" alignment="TOP_CENTER">
+                  <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="383.0" prefWidth="296.0">
                      <children>
-                        <AnchorPane maxHeight="50.0" onMouseClicked="#toViewCharacters" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 0 0 1 0; -fx-border-color: grey;" VBox.vgrow="ALWAYS">
+
+                        <!-- PERSONATGES -->
+                        <AnchorPane maxHeight="50.0" onMouseClicked="#toViewCharacters" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 0 0 1 0; -fx-border-color: grey;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label maxHeight="50.0" text="Personatges">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
+                                       <font><Font size="18.0" /></font>
+                                       <HBox.margin><Insets left="15.0" /></HBox.margin>
                                     </Label>
                                  </children>
                               </HBox>
                            </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                           <cursor><Cursor fx:constant="HAND" /></cursor>
                         </AnchorPane>
-                        <AnchorPane maxHeight="50.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 0 0 1 0; -fx-border-color: grey;" VBox.vgrow="ALWAYS">
+
+                        <!-- JOCS -->
+                        <AnchorPane maxHeight="50.0" onMouseClicked="#toViewGames" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 0 0 1 0; -fx-border-color: grey;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label maxHeight="50.0" text="Jocs">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
+                                       <font><Font size="18.0" /></font>
+                                       <HBox.margin><Insets left="15.0" /></HBox.margin>
                                     </Label>
                                  </children>
                               </HBox>
                            </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                           <cursor><Cursor fx:constant="HAND" /></cursor>
                         </AnchorPane>
-                        <AnchorPane maxHeight="50.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 0 0 1 0; -fx-border-color: grey;" VBox.vgrow="ALWAYS">
+
+                        <!-- CONSOLES -->
+                        <AnchorPane maxHeight="50.0" onMouseClicked="#toViewConsoles" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-width: 0 0 1 0; -fx-border-color: grey;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label maxHeight="50.0" text="Consoles">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
+                                       <font><Font size="18.0" /></font>
+                                       <HBox.margin><Insets left="15.0" /></HBox.margin>
                                     </Label>
                                  </children>
                               </HBox>
                            </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                           <cursor><Cursor fx:constant="HAND" /></cursor>
                         </AnchorPane>
+
                      </children>
                   </VBox>
                </content>
